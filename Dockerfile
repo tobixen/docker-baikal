@@ -24,7 +24,11 @@ ADD config.system.php /baikal/Specific/config.system.php
 ADD INSTALL_DISABLED /baikal/Specific/INSTALL_DISABLED
 ADD db.sqlite /baikal/Specific/db/db.sqlite
 
-VOLUME /baikal/Specific
+## This feels a bit wrong, though I'm not strong enough on openshift/docker to solve it the right way.
+## openshift prefers running its "pods" with random user IDs.
+RUN chmod a+w /baikal/Specific/db/db.sqlite
+
+#VOLUME /baikal/Specific
 
 EXPOSE 8080
 
