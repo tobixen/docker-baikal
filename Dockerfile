@@ -2,7 +2,7 @@ FROM alpine:3.4
 MAINTAINER Tobias Brox <tobias@tobixen.no>
 
 ENV VERSION  0.4.6
-#ENV CHECKSUM 533e46ffcafda24e91aabbbc5873b7d1153d538dde599927f77e1595793ddb3e
+ENV CHECKSUM 946e8e4161f7ef84be42430b6e9d3bb7dd4bbbe241b409be208c14447d7aa7a6
 
 ADD baikal.sh /usr/local/bin/baikal
 
@@ -19,9 +19,13 @@ RUN apk --no-cache add unzip openssl lighttpd php5-cgi php5-ctype php5-dom \
     && apk del -rf --purge openssl unzip
 
 ADD lighttpd.conf /etc/lighttpd/lighttpd.conf
+ADD config.php /baikal/Specific/config.php
+ADD config.system.php /baikal/Specific/config.system.php
+ADD INSTALL_DISABLED /baikal/Specific/INSTALL_DISABLED
+ADD db.sqlite /baikal/Specific/db/db.sqlite
 
 VOLUME /baikal/Specific
 
-EXPOSE 80
+EXPOSE 8080
 
 ENTRYPOINT ["baikal"]
