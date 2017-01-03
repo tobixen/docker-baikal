@@ -24,9 +24,14 @@ ADD config.system.php /baikal/Specific/config.system.php
 ADD INSTALL_DISABLED /baikal/Specific/INSTALL_DISABLED
 ADD db.sqlite /baikal/Specific/db/db.sqlite
 
-## This feels a bit wrong, though I'm not strong enough on openshift/docker to solve it the right way.
+## Baikal just throws an assertion error unless it has full write
+## access on all files under baikal/Specific - including the config
+## file, duh! :-( Letting the application having write access to
+## php-files is a bad idea!  a+w also feels a bit wrong, though I'm not
+## strong enough on openshift/docker to solve that the right way.
 ## openshift prefers running its "pods" with random user IDs.
-RUN chmod a+w /baikal/Specific/db/db.sqlite
+
+RUN chmod -R a+w /baikal/Specific/
 
 #VOLUME /baikal/Specific
 
