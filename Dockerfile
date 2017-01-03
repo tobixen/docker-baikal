@@ -1,8 +1,8 @@
 FROM alpine:3.4
-MAINTAINER Dmitry Prazdnichnov <dp@bambucha.org>
+MAINTAINER Tobias Brox <tobias@tobixen.no>
 
-ENV VERSION  0.4.5
-ENV CHECKSUM 533e46ffcafda24e91aabbbc5873b7d1153d538dde599927f77e1595793ddb3e
+ENV VERSION  0.4.6
+#ENV CHECKSUM 533e46ffcafda24e91aabbbc5873b7d1153d538dde599927f77e1595793ddb3e
 
 ADD baikal.sh /usr/local/bin/baikal
 
